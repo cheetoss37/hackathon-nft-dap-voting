@@ -1,6 +1,10 @@
 import React from "react";
-import { Box } from "@mui/material";
 import Header from "./Header";
+import { Box } from "@mui/material";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Admin from "./Admin";
+import Claim from "./Claim";
+import Vote from "./Vote";
 
 function App() {
   return (
@@ -15,7 +19,15 @@ function App() {
       }}
     >
       <Header />
-      <Box sx={{ flex: 1 }}></Box>
+      <Box sx={{ flex: 1 }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path={"/admin"} element={<Admin />} />
+            <Route path={"/vote"} element={<Vote />} />
+            <Route path={"/claim"} element={<Claim />} />
+          </Routes>
+        </BrowserRouter>
+      </Box>
     </Box>
   );
 }
