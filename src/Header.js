@@ -15,7 +15,7 @@ const Header = () => {
       }}
     >
       <Typography variant="h5" sx={{ ml: 3, color: "#fff", fontWeight: 600 }}>
-        NFT DAO Voting Demo
+        PanDAO
       </Typography>
 
       <ConnectWallet />
