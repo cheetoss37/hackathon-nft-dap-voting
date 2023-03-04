@@ -5,6 +5,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Admin from "./Admin";
 import Claim from "./Claim";
 import Vote from "./Vote";
+import TestConnectFirebase from "./TestConnectFirebase";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
             <Route path={"/admin"} element={<Admin />} />
             <Route path={"/vote"} element={<Vote />} />
             <Route path={"/claim"} element={<Claim />} />
+            <Route
+              path={"/connect-firebase"}
+              element={<TestConnectFirebase />}
+            />
           </Routes>
         </BrowserRouter>
       </Box>
