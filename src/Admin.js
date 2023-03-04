@@ -9,8 +9,23 @@ import {
   MenuItem,
   Button,
 } from "@mui/material";
+import { BN, web3 } from "@project-serum/anchor";
+import {
+  hackathonProgram,
+  superAdmin,
+  tokenVote,
+  systemProgram,
+  tokenProgram,
+  time,
+  createAnchorProvider,
+  createConnection,
+} from "./helper/constant";
+import { useAuthContext } from "./AuthContext";
+import { createProposal } from "./helper/common";
 
 const Admin = () => {
+  const { walletAddress } = useAuthContext();
+
   const [proposalTitle, setProposalTitle] = useState("");
   const [proposalDesc, setProposalDesc] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
@@ -86,9 +101,37 @@ const Admin = () => {
     setMaxNumberVote(e.target.value);
   };
 
-  const handleCreateProposal = () => {
+  const handleCreateProposal = async () => {
     try {
-      console.log("execute function");
+      const { connection } = hackathonProgram.provider;
+
+      const now = Math.floor(new Date().getTime() / 1000);
+      const start = now + 10 * 60;
+      const end = start + 100;
+
+      const CONNECTION = createConnection();
+      const provider = createAnchorProvider(CONNECTION, walletAddress);
+      console.log(provider);
+      const transaction = await createProposal(
+        hackathonProgram,
+        superAdmin,
+        walletAddress,
+        tokenVote,
+        "Proposal title",
+        "Proposal description",
+        new BN(start),
+        new BN(end),
+        0,
+        5,
+        2,
+        500,
+        1,
+        systemProgram,
+        tokenProgram,
+        time
+      );
+
+      await web3.sendAndConfirmTransaction(connection, transaction, provider);
     } catch (error) {
       console.log(error);
     }
