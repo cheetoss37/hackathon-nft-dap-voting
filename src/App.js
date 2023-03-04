@@ -19,7 +19,14 @@ function App() {
       }}
     >
       <Header />
-      <Box sx={{ flex: 1 }}>
+      <Box
+        sx={{
+          flex: 1,
+          maxHeight: "calc(100vh - 96px)",
+          overflowY: "scroll",
+          width: "100%",
+        }}
+      >
         <BrowserRouter>
           <Routes>
             <Route path={"/admin"} element={<Admin />} />
