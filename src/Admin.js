@@ -160,7 +160,7 @@ const Admin = () => {
 
           <Box>
             <Box>
-              <Typography sx={{ mb: 2, mt: 2 }}>Options Field</Typography>
+              <Typography sx={{ mb: 2, mt: 2 }}>Voting Method</Typography>
               {optionsArray.map((item, idx) => {
                 return (
                   <TextField
